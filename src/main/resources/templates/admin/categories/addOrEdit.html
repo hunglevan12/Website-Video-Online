@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/fragments/dashboard.html}" >
+<head>
+    
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <main>
+        <header class="row text-center">
+
+        </header>
+        <section class="row" layout:fragment="content">
+            <div class="col-6 offset-3 mt-4">
+                <form th:action="@{/admin/categories/saveOrUpdate}" method="post" modelAttribute="category" th:object="${category}">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>THÊM MỚI LOẠI</h2>
+                        </div>                        
+                        <div class="card-body" style="height: 300px;">                           
+                            <div class="form-group">
+                                <label for="categoryId">ID Loại:</label>
+                                <input type="hidden" th:field="*{isEdit}">
+                                <input type="text"  class="form-control" th:field="*{categoryId}" aria-describedby="categoryIdHid" placeholder="CategoryId" readonly>
+                                <small th:if="${#fields.hasErrors('categoryId')}" id="categoryIdHid" class="form-text text-muted">CategoryId Không Được Để Trống
+                                    </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Tên</label>
+                                <input type="text" class="form-control" th:field="*{name}"  id="name"
+                                    aria-describedby="nameHid" placeholder="Category Name">
+                                <small th:if="${#fields.hasErrors('name')}" id="nameHid" class="form-text text-muted">Name Không Được Để Trống</small>
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="reset" class="btn btn-secondary">Làm Mới</button>
+                            <a th:href="@{/admin/categories}" class="btn btn-success">Danh Sách Loại</a>
+                            <button class="btn btn-primary"><i class="fas fa-save"></i> 
+                              <span th:if="${category.isEdit}">Cập Nhật</span>
+                              <span th:unless="${category.isEdit}">Lưu</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <footer class="row"></footer>
+
+        </section>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

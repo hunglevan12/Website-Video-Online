@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/fragments/dashboard.html}">
+
+<head>
+    <title>PRODUCTS</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+       <section class="row" layout:fragment="content">
+            <div class="col mt-4">
+                <form action="/admin/products/saveOrUpdate" method="post"
+                      enctype="multipart/form-data" th:object="${product}">
+                    <div class="card">
+                        <div class="card-header" style="text-align: center; background-color: white;">
+                            <img src="https://cdn2.iconfinder.com/data/icons/ecommerce-solid-version/32/add_product_new_product_item_ecommerceproduct--512.png"
+                                width="40px" alt="Polyshop">
+                            <h2 >Thêm Mới Sản Phẩm</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-7">
+                                    <input type="hidden" th:field="*{isEdit}">  
+                                    <div class="form-group" th:if="${product.isEdit}">                                
+                                        <label for="productId">Product ID:</label>
+                                        <input type="text" class="form-control" name="productId" id="productId"
+                                            th:field="*{productId}" aria-describedby="productIdhId" placeholder="Product ID">
+                                        <small id="productIdhId" class="form-text text-muted">Product Id Không Được Để Trống</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Tên Sản Phẩm</label>
+                                        <input type="text" class="form-control" name="name" id="name" 
+                                        th:field="*{name}"
+                                            aria-describedby="namehId" placeholder="Name">
+                                        <small id="namehId" class="form-text text-muted">Tên Không Được Để Trống</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="quantity">Số lượng</label>
+                                        <input type="text" class="form-control" name="quantity" id="quantity"
+                                            th:field="*{quantity}" aria-describedby="quantityhId" placeholder="Số Lượng">
+                                        <small id="quantityhId" class="form-text text-muted">Số Lượng Không Được Để Trống</small>
+                                    </div>
+
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text">Đơn giá</span>
+                                        <input type="number" class="form-control" name="unitPrice" id="unitPrice"
+                                            th:field="*{unitPrice}" placeholder="Unit Price">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+
+
+                                   <div class="form-group">
+                                        <label for="categoryId">Loại</label>
+                                        <select class="form-control" name="categoryId" id="categoryId"
+                                            th:field="*{categoryId}">
+                                        <option th:each="item : ${categories}" th:value="${item.categoryId}"
+                                            th:text="${item.name}">Category Name</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-3">
+                                    <script>
+                                        function chooseFile(fileInput){
+                                            if(fileInput.files && fileInput.files[0]){
+                                                var reader = new FileReader();
+
+                                                reader.onload == function (e){
+                                                    $('#image').attr('src',e.target.result);
+                                                }
+                                                reader.readAsDataURL(fileInput.files[0]);
+                                            }
+                                        }
+                                    </script>
+                                    <img id="image" th:src="${product.image!=null? 'admin/products/images/' + product.image : 'http://www.fremontgurdwara.org/wp-content/uploads/2020/06/no-image-icon-2.png'}"
+                                    src="http://www.fremontgurdwara.org/wp-content/uploads/2020/06/no-image-icon-2.png" width="90%" class="img-fluid" alt="">
+                                    <div class="form-group">
+                                        <label for="productImage">Image File</label>
+                                        <input type="file" onchage="chooseFile()" class="form-control-file" name="imageFile" id="productImage"
+                                            placeholder="Product Image" aria-describedby="productImage">
+                                        <small id="productImage" class="form-text text-muted">Image Không Được Để Trống</small>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <span class="input-group-text">Giảm Giá</span>
+                                        <input type="number" class="form-control" name="discount" id="discount"
+                                            th:field="*{discount}" placeholder="Discount">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="status">Trạng thái</label>
+                                        <select class="form-control" name="status" id="status" th:field="*{status}">
+                                            <option value="0">Hết hàng</option>
+                                            <option value="1">Giảm Giá</option>
+                                            <option value="2">Đặc Sắc</option>
+                                            <option value="3">Bán Tốt</option>
+                                            <option value="4">Không Bán Nữa</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="description">Mô Tả</label>
+                                        <textarea class="form-control" name="description" id="description"
+                                            th:field="*{description}" rows="7"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer text-muted">
+                            <a th:href="@{/admin/products/add}" class="btn btn-success">Làm Mới</a>
+                            <button class="btn btn-primary" th:text="${product.isEdit? 'Update' : 'Save'}">Lưu</button>
+                            <a th:if="@{/product.isEdit}" th:href="@{'admin/products/delete/' + ${product.productId}}" class="btn btn-danger float-right">Xóa</a>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <footer class="row"></footer>
+
+        </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

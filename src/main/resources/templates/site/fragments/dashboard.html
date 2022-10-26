@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <main class="container">
+        <header>
+            <div class="col">
+                <div th:replace="site/fragments/header::header"></div>
+            </div>
+        </header>
+        
+        <nav class="row">
+            <div class="col">
+                <div th:replace="site/fragments/nav::nav"></div>
+            </div>
+        </nav>
+        <br/>
+        <section class="row">
+            <div class="col">
+                <div layout:fragment="content"></div>
+            </div>
+        </section>
+        <br/>
+        <br/>
+        <br/>
+        <footer class="row">
+            <div class="col">
+                <div th:replace="site/fragments/footer::footer"></div>
+            </div>
+        </footer>
+    </main>
+
+    
+</body>
+
+</html>

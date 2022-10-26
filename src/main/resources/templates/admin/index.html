@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/fragments/dashboard.html}" >
+<head>
+    
+    <title>ADMIN DASHBOARD</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+        integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <main>
+        <section class="row-12" layout:fragment="content">
+			<div class="jumbotron">
+				<div class="container">
+					<h1 class="display-8">ADMIN DASHBOARD</h1>
+					<p class="lead">This is a modified jumbotron that occupies the
+						entire horizontal space of its parent.</p>
+				</div>
+			</div>
+		    <div class="text-center">
+                <a th:href="@{/admin/categories/add}" class="btn btn-badge badge-pill badge-primary"><i
+                        class="fas fa-user-plus fa-lg"></i>MANAGE CUSTOMER</a>
+
+                <a th:href="@{/admin/categories/search}" class="btn btn-badge badge-pill badge-secondary"><i
+                        class="fas fa-cubes fa-lg"></i>MANAGE CATEGORY</a>
+                <a th:href="@{/admin/products/add}" class="btn btn-badge badge-pill badge-success"><i
+                        class="fas fa-shopping-bag fa-lg"></i>MANAGE
+                    PRODUCT</a>
+                <a th:href="@{/admin/products}" class="btn btn-badge badge-pill badge-danger"><i
+                        class="fas fa-cart-plus fa-lg"></i>MANAGE ORDER</a>
+                <a th:href="@{/admin/accounts}" class="btn btn-badge badge-pill badge-warning"><i class="fas fa-users fa-lg"></i>MANAGE
+                    FROFILE</a>
+            </div>
+            <br />
+			<div class="alert alert-success" role="alert">
+				<h4 class="alert-heading">DASHBOARD NOTIFY!</h4>
+				<p>Những ưu điểm của hệ thống Dashboard:
+
+- Trực quan và sinh động vì chủ yếu bao gồm các biểu đồ, đồ thị và hình ảnh giúp cho các nhà phân tích có thể tìm ra vấn đề một cách nhanh chóng.
+
+- Giảm áp lực cho người trình bày khi đọc vì báo cáo chỉ tóm gọn trong một màn hình trình chiếu hoặc một trang giấy.
+
+- Trình bày thông tin mang tính hỗ trợ đưa ra hành động, quyết định.
+
+- Linh hoạt, dễ dàng cho phép người dùng tương tác để lựa chọn các phương án hoặc chỉ tiêu khác nhau từ tổng quan đến chi tiết một cách nhanh chóng và kịp thời cho việc đưa ra quyết định.</p>
+				<hr>
+				<p class="mb-0">- Tiết kiệm thời gian lập và trình bày báo cáo vì tính tự động hóa của Dashboard qua việc tạo lập nó trên những form mẫu có sẵn trên máy tính.</p>
+			</div>
+			<div class="alert alert-success alert-dismissible fade show"
+				role="alert">
+				<strong>Hola admin!</strong> You should check in on some of
+				those fields below.
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
+			<div class="alert alert-danger alert-dismissible fade show"
+				role="alert">
+				<strong>Hola admin!</strong> You should check in on some of
+				those fields below.
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<br/>
+			<div class="progress">
+				<div class="progress-bar bg-dark" role="progressbar"
+					style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+					aria-valuemax="100"></div>
+			</div>
+			<br/>
+			<div class="progress">
+				<div class="progress-bar bg-warning" role="progressbar"
+					style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+					aria-valuemax="100"></div>
+			</div>
+			<br/>
+			<div class="progress">
+				<div class="progress-bar bg-info" role="progressbar"
+					style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+					aria-valuemax="100"></div>
+			</div>
+			<br/>
+			<div class="progress">
+				<div class="progress-bar bg-secondary" role="progressbar"
+					style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+					aria-valuemax="100"></div>
+			</div>
+		</section>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
